@@ -1,31 +1,23 @@
 # Tic-Tac-Toe Minimax AI
 
-This project is a web-based implementation of the classic Tic-Tac-Toe game, featuring an AI opponent that uses the Minimax algorithm to play against a human player.
+This project is a web-based implementation of the classic Tic-Tac-Toe game, enhanced with a sophisticated AI opponent that uses the Minimax algorithm with alpha-beta pruning. The AI is designed to provide a challenging opponent by efficiently evaluating possible moves and making optimal decisions.
 
-## Features
-- Play Tic-Tac-Toe against a computer AI.
-- The AI uses the Minimax algorithm for optimal gameplay.
-- Randomized starting player.
-- Displays game results and turn indicators.
+#### Key Features:
+- **AI Opponent**: Play against a computer AI that uses the Minimax algorithm with alpha-beta pruning for optimal gameplay.
+- **Randomized Starting Player**: The starting player is chosen randomly at the beginning of each game to ensure varied gameplay experiences.
+- **Interactive UI**: A user-friendly interface with a responsive game board and pop-up notifications for game results.
+- **Game Reset**: Easily reset the game and start over with a new randomized starting player.
+- **Efficient Performance**: The use of alpha-beta pruning in the AI logic reduces unnecessary calculations, making the AI faster and more efficient.
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/nchinedu/tic-tac-toe-minimax-ai.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd tic-tac-toe-minimax-ai
-   ```
-3. Open `index.html` in your web browser to start playing.
+#### How to Play:
+- Open the `index.html` file in a web browser to start the game.
+- Click on the cells to make your move. The AI will automatically respond with its move.
+- The game will display the result (win, lose, draw) in a pop-up at the end.
+- Use the "Reset Game" button in the pop-up to start a new game with a randomized starting player.
 
-## Usage
-- Click on the cells to make your move.
-- The AI will automatically make its move after yours.
-- The game will display the result (win, lose, draw) at the end.
+#### Technical Details:
+- **HTML/CSS**: Provides the structure and styling for the game interface.
+- **JavaScript**: Implements the game logic, including the Minimax algorithm with alpha-beta pruning for the AI.
+- **Responsive Design**: Ensures the game is playable on various devices and screen sizes.
 
-## Contributing
-Feel free to submit issues or pull requests. Contributions are welcome!
-
-## License
-This project is licensed under the MIT License - see the [MIT LICENSE](https://mit-license.org/) file for details.
+This project showcases the integration of advanced AI techniques into a simple yet engaging game, offering both entertainment and a demonstration of algorithmic efficiency.
