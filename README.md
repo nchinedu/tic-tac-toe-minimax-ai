@@ -11,7 +11,7 @@ This project is a web-based implementation of the classic Tic-Tac-Toe game, feat
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/tic-tac-toe-minimax-ai.git
+   git clone https://github.com/nchinedu/tic-tac-toe-minimax-ai.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -28,4 +28,4 @@ This project is a web-based implementation of the classic Tic-Tac-Toe game, feat
 Feel free to submit issues or pull requests. Contributions are welcome!
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [MIT LICENSE](https://mit-license.org/) file for details.

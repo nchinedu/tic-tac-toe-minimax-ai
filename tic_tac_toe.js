@@ -161,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cells = document.querySelectorAll('.cell');
     const resetButton = document.getElementById('resetButton');
     const resultElement = document.getElementById('result');
+    const resetButtonModal = document.getElementById('reset-button-modal');
+    const overlay = document.getElementById('overlay');
 
     let board = [['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']];
     let currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
@@ -173,16 +175,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkGameOver() {
         const score = evaluate(board);
+        const winnerNameElement = document.getElementById('winner-name');
+
         if (score === 10) {
-            resultElement.textContent = 'You Win!';
+            winnerNameElement.textContent = 'You Win!';
+            overlay.style.display = 'flex';
             gameEnded = true;
         } else if (score === -10) {
-            resultElement.textContent = 'You Lose!';
+            winnerNameElement.textContent = 'You Lose!';
+            overlay.style.display = 'flex';
             gameEnded = true;
         } else if (!isMovesLeft(board)) {
-            resultElement.textContent = 'Draw!';
+            winnerNameElement.textContent = 'Draw!';
+            overlay.style.display = 'flex';
             gameEnded = true;
         }
+
+        const okButton = document.getElementById('ok-button');
+        okButton.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
     }
 
     function makeAIMove() {
@@ -196,6 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
         checkGameOver();
         currentPlayer = 'X';
         updateTurnMessage();
+    }
+
+    function resetGame() {
+        board = [['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']];
+        cells.forEach(cell => {
+            cell.textContent = '';
+        });
+        currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
+        gameEnded = false;
+        updateTurnMessage();
+        if (currentPlayer === 'O') {
+            makeAIMove();
+        }
     }
 
     cells.forEach((cell, index) => {
@@ -221,15 +246,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    resetButton.addEventListener('click', () => {
-        board = [['_', '_', '_'], ['_', '_', '_'], ['_', '_', '_']];
-        cells.forEach(cell => cell.textContent = '');
-        currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
-        gameEnded = false;
-        updateTurnMessage();
-        if (currentPlayer === 'O') {
-            makeAIMove();
-        }
+    resetButton.addEventListener('click', resetGame);
+    resetButtonModal.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        resetGame();
     });
 
     // Initial turn message
