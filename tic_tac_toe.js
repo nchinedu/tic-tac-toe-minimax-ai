@@ -57,65 +57,43 @@ function evaluate(board) {
     return 0;
 }
 
-// Minimax algorithm
-function minimax(board, depth, isMax) {
+// Minimax algorithm with alpha-beta pruning
+function minimax(board, depth, isMax, alpha, beta) {
     let score = evaluate(board);
 
-    // If Maximizer has won the game return his/her evaluated score
-    if (score === 10) {
-        return score - depth;
-    }
+    // Base cases for win, loss, or tie
+    if (score === 10) return score - depth;
+    if (score === -10) return score + depth;
+    if (!isMovesLeft(board)) return 0;
 
-    // If Minimizer has won the game return his/her evaluated score
-    if (score === -10) {
-        return score + depth;
-    }
-
-    // If there are no more moves and no winner then it is a tie
-    if (!isMovesLeft(board)) {
-        return 0;
-    }
-
-    // If this maximizer's move
     if (isMax) {
         let best = -1000;
 
-        // Traverse all cells
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                // Check if cell is empty
                 if (board[i][j] === '_') {
-                    // Make the move
-                    board[i][j] = 'X';
+                    board[i][j] = 'X'; // Make move
+                    best = Math.max(best, minimax(board, depth + 1, false, alpha, beta));
+                    board[i][j] = '_'; // Undo move
+                    alpha = Math.max(alpha, best);
 
-                    // Call minimax recursively and choose the maximum value
-                    best = Math.max(best, minimax(board, depth + 1, !isMax));
-
-                    // Undo the move
-                    board[i][j] = '_';
+                    if (beta <= alpha) return best; // Prune
                 }
             }
         }
         return best;
-    }
-
-    // If this minimizer's move
-    else {
+    } else {
         let best = 1000;
 
-        // Traverse all cells
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                // Check if cell is empty
                 if (board[i][j] === '_') {
-                    // Make the move
-                    board[i][j] = 'O';
+                    board[i][j] = 'O'; // Make move
+                    best = Math.min(best, minimax(board, depth + 1, true, alpha, beta));
+                    board[i][j] = '_'; // Undo move
+                    beta = Math.min(beta, best);
 
-                    // Call minimax recursively and choose the minimum value
-                    best = Math.min(best, minimax(board, depth + 1, !isMax));
-
-                    // Undo the move
-                    board[i][j] = '_';
+                    if (beta <= alpha) return best; // Prune
                 }
             }
         }
@@ -137,7 +115,7 @@ function findBestMove(board) {
                 board[i][j] = 'X';
 
                 // compute evaluation function for this move.
-                let moveVal = minimax(board, 0, false);
+                let moveVal = minimax(board, 0, false, -1000, 1000);
 
                 // Undo the move
                 board[i][j] = '_';
