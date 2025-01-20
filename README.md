@@ -28,8 +28,4 @@ This project is a web-based implementation of the classic Tic-Tac-Toe game, feat
 Feel free to submit issues or pull requests. Contributions are welcome!
 
 ## License
-<<<<<<< HEAD
 This project is licensed under the MIT License - see the [MIT LICENSE](https://mit-license.org/) file for details.
-=======
-This project is licensed under the MIT License - see the [MIT-LICENSE](https://github.com/nchinedu/tic-tac-toe-minimax-ai?tab=MIT-1-ov-file) file for details.
->>>>>>> 4dc32a86ed809231f35d2a32c9e27a35bc7c4787
